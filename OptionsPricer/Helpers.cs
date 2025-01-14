@@ -8,7 +8,7 @@ namespace OptionsPricer
 {
     public static class HelperFunctions
     {
-        public static double NormalCDF(double x) //Normal CDF Function 
+        public static double NormalCDF(double x) // Normal CDF Function: N()
         { // constants
             double a1 = 0.254829592;
             double a2 = -0.284496736;
@@ -28,6 +28,11 @@ namespace OptionsPricer
             double y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.Exp(-x * x);
 
             return 0.5 * (1.0 + sign * y);
+        }
+
+        public static double NormalPDF(double x) // Normal PDF: N'()
+        {
+            return Math.Exp(-x * x / 2.0) / Math.Sqrt(2.0 * Math.PI);
         }
     }
 }
