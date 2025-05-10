@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptionsPricer", "OptionsPri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptionsPricerUT", "OptionsPricerUT\OptionsPricerUT.csproj", "{09AD3FBC-D8FD-4B59-A380-2B0B9D7931B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{142876F4-67C1-4783-8B42-69CF2FA5EEC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{09AD3FBC-D8FD-4B59-A380-2B0B9D7931B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09AD3FBC-D8FD-4B59-A380-2B0B9D7931B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09AD3FBC-D8FD-4B59-A380-2B0B9D7931B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{142876F4-67C1-4783-8B42-69CF2FA5EEC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{142876F4-67C1-4783-8B42-69CF2FA5EEC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{142876F4-67C1-4783-8B42-69CF2FA5EEC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{142876F4-67C1-4783-8B42-69CF2FA5EEC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
