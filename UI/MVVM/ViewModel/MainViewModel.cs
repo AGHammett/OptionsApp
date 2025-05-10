@@ -32,7 +32,7 @@ namespace UI.MVVM.ViewModel
         { 
             HomeVM = new HomeViewModel();
             OPVM = new OptionsPricingViewModel();
-            CurrentView = HomeVM;
+            CurrentView = OPVM;
 
             HomeViewCommand = new RelayCommand(o =>
             {

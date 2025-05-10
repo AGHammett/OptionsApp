@@ -24,5 +24,5 @@ namespace UI.MVVM.View
         {
             InitializeComponent();
         }
-    }
+    }   
 }

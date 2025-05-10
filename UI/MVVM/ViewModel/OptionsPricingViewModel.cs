@@ -19,7 +19,7 @@ namespace UI.MVVM.ViewModel
         private double _r; // Short Rate
         private double _sigma; // Volatility
         private double _v; // Option Value
-        private double _valueResult;
+        private double _valueResult; //Result for value calculation
 
         public double S
         {
@@ -67,17 +67,43 @@ namespace UI.MVVM.ViewModel
             }
         }
 
+        public enum OptionType { Call, Put}; //Create option type data class
+        private OptionType _selectedOptionType = OptionType.Call;
+        public OptionType SelectedOptionType //Getter/Setter to change/read option data
+        {
+            get => _selectedOptionType;
+            set { _selectedOptionType = value; OnPropertyChanged(); }
+        }
+
+        public ICommand ToggleOptionTypeCommand { get; }
+        
+        private void ToggleOptionType(object parameter)
+        {
+            SelectedOptionType = SelectedOptionType == OptionType.Call
+                ? OptionType.Put
+                : OptionType.Call;
+        }
+
         public ICommand CalculateCommand { get; } //Decouple user interaction from function implementation
 
         public OptionsPricingViewModel()
         {
             CalculateCommand = new RelayCommand(CalculateResult);
+            ToggleOptionTypeCommand = new RelayCommand(ToggleOptionType);
         }
 
-        private void CalculateResult(object parameter) //Instantiate backend Call Option and update value
+        private void CalculateResult(object parameter) //Calculate value based on option type
         {
-            var call = new BSMCall(S, K, T, R, Sigma, V = 0);
-            ValueResult = call.CalculateValue();
+            if (SelectedOptionType == OptionType.Call)
+            {
+                var call = new BSMCall(S, K, T, R, Sigma, V = 0);
+                ValueResult = call.CalculateValue();
+            }
+            else
+            {
+                var put = new BSMPut(S, K, T, R, Sigma, V = 0);
+                ValueResult = put.CalculateValue();
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
