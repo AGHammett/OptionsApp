@@ -14,9 +14,9 @@ namespace OptionsPricer
         {
         }
         //Put Option Greeks
-        public double Delta => HelperFunctions.NormalCDF(D1) - 1; // Partial Derivative wrt Security Price
-        public double Rho => -K * T * Math.Exp(-R * T) * HelperFunctions.NormalCDF(-D2); // Partial Derivative wrt Short Rate
-        public double Theta => -(S * HelperFunctions.NormalPDF(D1) * Sigma) / (2 * Math.Sqrt(T)) + R * Math.Exp(-R * T) * K * HelperFunctions.NormalCDF(-D2); // Partial Derivative wrt Time
+        public override double Delta => HelperFunctions.NormalCDF(D1) - 1; // Partial Derivative wrt Security Price
+        public override double Rho => -K * T * Math.Exp(-R * T) * HelperFunctions.NormalCDF(-D2); // Partial Derivative wrt Short Rate
+        public override double Theta => -(S * HelperFunctions.NormalPDF(D1) * Sigma) / (2 * Math.Sqrt(T)) + R * Math.Exp(-R * T) * K * HelperFunctions.NormalCDF(-D2); // Partial Derivative wrt Time
 
         public override double CalculateValue()
         {

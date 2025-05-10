@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 using OptionsPricer;
 using System.Windows.Input;
 using UI.Core;
+using UI.MVVM.Model;
+using Microsoft.VisualBasic.FileIO;
+using ScottPlot.Colormaps;
 
 namespace UI.MVVM.ViewModel
 {
@@ -75,6 +78,13 @@ namespace UI.MVVM.ViewModel
             set { _selectedOptionType = value; OnPropertyChanged(); }
         }
 
+        private OptionGreeks _greeks = new OptionGreeks();
+        public OptionGreeks Greeks
+        {
+            get => _greeks;
+            set { _greeks = value; OnPropertyChanged(); }
+        }
+
         public ICommand ToggleOptionTypeCommand { get; }
         
         private void ToggleOptionType(object parameter)
@@ -94,16 +104,20 @@ namespace UI.MVVM.ViewModel
 
         private void CalculateResult(object parameter) //Calculate value based on option type
         {
-            if (SelectedOptionType == OptionType.Call)
+            BSMOption option = SelectedOptionType == OptionType.Call
+                ? new BSMCall(S, K, T, R, Sigma, V)
+                : new BSMPut(S, K, T, R, Sigma, V);
+
+            ValueResult = option.CalculateValue();
+
+            Greeks = new OptionGreeks // Instantiate class to hold values caluclated
             {
-                var call = new BSMCall(S, K, T, R, Sigma, V = 0);
-                ValueResult = call.CalculateValue();
-            }
-            else
-            {
-                var put = new BSMPut(S, K, T, R, Sigma, V = 0);
-                ValueResult = put.CalculateValue();
-            }
+                Delta = option.Delta,
+                Gamma = option.Gamma,
+                Theta = option.Theta,
+                Vega = option.Vega,
+                Rho = option.Rho
+            };
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

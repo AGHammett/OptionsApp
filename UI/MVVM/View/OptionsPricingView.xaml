@@ -94,7 +94,7 @@
                     <Button Grid.Row="6" Grid.Column="1" Content="{Binding SelectedOptionType}" 
                             Command="{Binding ToggleOptionTypeCommand}" 
                     Margin="5,2,0,0" Padding="5,5" HorizontalAlignment="Left"
-                    Background="#0078D7" Foreground="White"/>
+                    Background="#0078D7" Foreground="White" Width="157"/>
 
                 </Grid>
 
@@ -104,17 +104,78 @@
                 Background="#0078D7" Foreground="White"/>
 
                 <!-- Result Display -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <TextBlock Text="Option Price: " FontWeight="Bold" Foreground="White"/>
-                    <TextBlock Text="{Binding ValueResult, StringFormat=N2}" 
-                       FontWeight="Bold" Foreground="#00FF00" MinWidth="100"/>
-                </StackPanel>
+                <Grid HorizontalAlignment="Center" Margin="0,20,0,0" Height="47" Width="261">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="130"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Option Value: " FontSize ="20" FontWeight="Bold" Foreground="White"
+                    VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="0"/>
+
+                    <TextBlock Text="{Binding ValueResult, StringFormat=N2}" FontWeight="Bold" 
+                               FontSize =" 20" Foreground="#00FF00" VerticalAlignment="Center" 
+                               HorizontalAlignment="Stretch" Grid.Column="1"/>
+                </Grid>
 
             </StackPanel>
 
-            <!-- Right Side: Placeholder or Future Content -->
+            <!-- Right Side: Greeks Display -->
             <StackPanel Grid.Column="1" Margin="10">
-                <!-- You can add additional UI elements here -->
+                <TextBlock Text="Option Greeks" 
+               FontSize="18" FontWeight="Bold" 
+               Foreground="White" Margin="0,0,0,20"
+               HorizontalAlignment="Center"/>
+
+                <!-- Greek Values Display -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Delta -->
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Delta:" 
+                   Foreground="White" Margin="5" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" 
+                   Text="{Binding Greeks.Delta, StringFormat=N4}" 
+                   Foreground="#00FF00" Margin="5" VerticalAlignment="Center"/>
+
+                    <!-- Gamma -->
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Gamma:" 
+                   Foreground="White" Margin="5" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" 
+                   Text="{Binding Greeks.Gamma, StringFormat=N4}" 
+                   Foreground="#00FF00" Margin="5" VerticalAlignment="Center"/>
+
+                    <!-- Theta -->
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Theta:" 
+                   Foreground="White" Margin="5" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" 
+                   Text="{Binding Greeks.Theta, StringFormat=N4}" 
+                   Foreground="#00FF00" Margin="5" VerticalAlignment="Center"/>
+
+                    <!-- Vega -->
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Vega:" 
+                   Foreground="White" Margin="5" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" 
+                   Text="{Binding Greeks.Vega, StringFormat=N4}" 
+                   Foreground="#00FF00" Margin="5" VerticalAlignment="Center"/>
+
+                    <!-- Rho -->
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Rho:" 
+                   Foreground="White" Margin="5" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" 
+                   Text="{Binding Greeks.Rho, StringFormat=N4}" 
+                   Foreground="#00FF00" Margin="5" VerticalAlignment="Center"/>
+                </Grid>
             </StackPanel>
         </Grid>
 

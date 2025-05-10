@@ -25,6 +25,11 @@ namespace OptionsPricer
         public double Vega => S * Math.Sqrt(T) * HelperFunctions.NormalPDF(D1); // Partial Derivative wrt Volatility
         public double Gamma => HelperFunctions.NormalPDF(D1) / (S * Sigma * Math.Sqrt(T)); // Second Partial Derivative wrt Security Price
 
+        //Unique Greeks - abstract placeholders to be filled in in specific cases
+        public abstract double Delta { get; } // Partial Derivative wrt Security Price
+        public abstract double Rho { get; } // Partial Derivative wrt Short Rate
+        public abstract double Theta { get; } // Partial Derivative wrt Time
+
         public BSMOption(double s, double k, double t, double r, double sigma, double v)
         {
 
